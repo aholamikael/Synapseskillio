@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "bb757ab7-f584-4cbe-8cbf-b0cd5774212d"
+				"spark.autotune.trackingId": "db475a3e-17bc-4315-8f8b-b9b7246af7bc"
 			}
 		},
 		"metadata": {
@@ -70,7 +70,7 @@
 					"df = pd.read_csv('abfss://exercisewednesday/Titanic.csv')\r\n",
 					"print(df)"
 				],
-				"execution_count": 18
+				"execution_count": 29
 			},
 			{
 				"cell_type": "markdown",
@@ -112,7 +112,7 @@
 					"print(df)\r\n",
 					""
 				],
-				"execution_count": 19
+				"execution_count": 30
 			},
 			{
 				"cell_type": "markdown",
@@ -149,7 +149,7 @@
 					"\r\n",
 					"print(df)"
 				],
-				"execution_count": 20
+				"execution_count": 31
 			},
 			{
 				"cell_type": "code",
@@ -171,7 +171,7 @@
 					"\r\n",
 					"print(df)"
 				],
-				"execution_count": 21
+				"execution_count": 32
 			}
 		]
 	}

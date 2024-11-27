@@ -1,0 +1,35 @@
+{
+	"name": "Titanicdataflow",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText1",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          Survived as string,",
+				"          Pclass as string,",
+				"          Name as string,",
+				"          Sex as string,",
+				"          Age as string,",
+				"          SiblingsSpousesAboard as string,",
+				"          ParentsChildrenAboard as string,",
+				"          Fare as string,",
+				"          highFare as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1"
+			]
+		}
+	}
+}
