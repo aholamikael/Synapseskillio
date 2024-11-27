@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "db475a3e-17bc-4315-8f8b-b9b7246af7bc"
+				"spark.autotune.trackingId": "2d0265dc-7e3f-4ee4-8f96-600347d7c485"
 			}
 		},
 		"metadata": {
@@ -70,7 +70,7 @@
 					"df = pd.read_csv('abfss://exercisewednesday/Titanic.csv')\r\n",
 					"print(df)"
 				],
-				"execution_count": 29
+				"execution_count": 1
 			},
 			{
 				"cell_type": "markdown",
@@ -112,7 +112,7 @@
 					"print(df)\r\n",
 					""
 				],
-				"execution_count": 30
+				"execution_count": 2
 			},
 			{
 				"cell_type": "markdown",
@@ -142,14 +142,12 @@
 					}
 				},
 				"source": [
-					"average_fare = df['Fare'].mean()\r\n",
-					"\r\n",
-					"df['highFare'] = 0 \r\n",
-					"df.loc[df['Fare'] >= average_fare, 'highFare'] = 1  \r\n",
+					"df = df.rename(columns={'Siblings/Spouses Aboard': 'SiblingsSpousesAboard'})\r\n",
+					"df = df.rename(columns={'Parents/Children Aboard': 'ParentsChildrenAboard'})\r\n",
 					"\r\n",
 					"print(df)"
 				],
-				"execution_count": 31
+				"execution_count": 3
 			},
 			{
 				"cell_type": "code",
@@ -165,13 +163,36 @@
 					}
 				},
 				"source": [
-					"output_path = 'abfss://exercisewednesday/notetitanic.csv'\r\n",
+					"average_fare = df['Fare'].mean()\r\n",
+					"\r\n",
+					"df['highFare'] = 0 \r\n",
+					"df.loc[df['Fare'] >= average_fare, 'highFare'] = 1  \r\n",
+					"\r\n",
+					"print(df)"
+				],
+				"execution_count": 4
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"output_path = 'abfss://exercisewednesday/uustesti.csv'\r\n",
 					"\r\n",
 					"df.to_csv(output_path, index=False)\r\n",
 					"\r\n",
 					"print(df)"
 				],
-				"execution_count": 32
+				"execution_count": 5
 			}
 		]
 	}
