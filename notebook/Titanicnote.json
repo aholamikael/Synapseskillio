@@ -1,0 +1,175 @@
+{
+	"name": "Titanicnote",
+	"properties": {
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "ApachePooldemoo",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "3883525f-8615-4859-8ec0-07d267489c67"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/23b183d5-a30f-46b8-b418-ad060fb67787/resourceGroups/Mikael_skillio/providers/Microsoft.Synapse/workspaces/mikaelskillio/bigDataPools/ApachePooldemoo",
+				"name": "ApachePooldemoo",
+				"type": "Spark",
+				"endpoint": "https://mikaelskillio.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/ApachePooldemoo",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net"
+				},
+				"sparkVersion": "3.4",
+				"nodeCount": 10,
+				"cores": 4,
+				"memory": 28,
+				"automaticScaleJobs": false
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# Exercise 2"
+				]
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"import pandas as pd\r\n",
+					"\r\n",
+					"#read csv file\r\n",
+					"df = pd.read_csv('abfss://exercisewednesday/Titanic.csv')\r\n",
+					"print(df)"
+				],
+				"execution_count": 14
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# Exercise 2 \r\n",
+					"part 2.1"
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"\r\n",
+					"def remove_titles(name):\r\n",
+					"    titles = ['Mr.', 'Mrs.', 'Miss.', 'Master.', 'Rev.', '.']\r\n",
+					"    for title in titles:\r\n",
+					"        name = name.replace(title, '').strip()\r\n",
+					"    return name\r\n",
+					"\r\n",
+					"df['Name'] = df['Name'].apply(remove_titles)\r\n",
+					"\r\n",
+					"print(df)\r\n",
+					""
+				],
+				"execution_count": 11
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# Exercise 2\r\n",
+					"part 2.2"
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"average_fare = df['Fare'].mean()\r\n",
+					"\r\n",
+					"df['highFare'] = 0 \r\n",
+					"df.loc[df['Fare'] >= average_fare, 'highFare'] = 1  \r\n",
+					"\r\n",
+					"\r\n",
+					"print(df)"
+				],
+				"execution_count": 13
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					""
+				],
+				"execution_count": null
+			}
+		]
+	}
+}

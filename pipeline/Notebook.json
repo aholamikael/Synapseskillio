@@ -80,7 +80,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"notebook": {
-						"referenceName": "Notebook 2",
+						"referenceName": "Titanicnote",
 						"type": "NotebookReference"
 					},
 					"snapshot": true
