@@ -1,0 +1,91 @@
+{
+	"name": "Notebook 1",
+	"properties": {
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "ApachePooldemoo",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "c91fe9d5-1747-417c-a306-a19062f8ddbd"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/23b183d5-a30f-46b8-b418-ad060fb67787/resourceGroups/Mikael_skillio/providers/Microsoft.Synapse/workspaces/mikaelskillio/bigDataPools/ApachePooldemoo",
+				"name": "ApachePooldemoo",
+				"type": "Spark",
+				"endpoint": "https://mikaelskillio.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/ApachePooldemoo",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net"
+				},
+				"sparkVersion": "3.4",
+				"nodeCount": 10,
+				"cores": 4,
+				"memory": 28,
+				"automaticScaleJobs": false
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"source": [
+					"#Read data file from FSSPEC short URL of default Azure Data Lake Storage Gen2\r\n",
+					"\r\n",
+					"import pandas\r\n",
+					"\r\n",
+					"#read csv file\r\n",
+					"df = pandas.read_csv('abfss://mikaelskillio/titanic.csv')\r\n",
+					"print(df)"
+				],
+				"execution_count": 5
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"import pandas as pd\r\n",
+					"\r\n",
+					"df = pd.read_csv('abfss://mikaelskillio/titanic.csv')\r\n",
+					"\r\n",
+					"female_passengers = df[df['Sex'] == 'female']\r\n",
+					"\r\n",
+					"print(female_passengers)\r\n",
+					""
+				],
+				"execution_count": 6
+			}
+		]
+	}
+}
