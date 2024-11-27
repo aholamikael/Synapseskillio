@@ -1,0 +1,17 @@
+{
+	"name": "AzurePostgreSqlTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Lentodatasetti",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzurePostgreSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "bookings",
+			"table": "seats"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

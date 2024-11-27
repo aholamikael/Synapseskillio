@@ -1,0 +1,142 @@
+{
+	"name": "Dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Json1",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				},
+				{
+					"dataset": {
+						"referenceName": "Json2",
+						"type": "DatasetReference"
+					},
+					"name": "source2"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSynapseAnalyticsTable1",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "select1"
+				},
+				{
+					"name": "select2"
+				},
+				{
+					"name": "union1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          cancelled as boolean,",
+				"          commuterLineID as string,",
+				"          departureDate as date,",
+				"          operatorShortCode as string,",
+				"          operatorUICCode as short,",
+				"          runningCurrently as boolean,",
+				"          timeTableRows as (actualTime as string, cancelled as boolean, causes as string[], commercialStop as boolean, commercialTrack as short, countryCode as string, differenceInMinutes as short, estimateSource as string, liveEstimateTime as string, scheduledTime as string, stationShortCode as string, stationUICCode as short, trainReady as (accepted as boolean, source as string, timestamp as string), trainStopping as boolean, type as string)[],",
+				"          timetableAcceptanceDate as string,",
+				"          timetableType as string,",
+				"          trainCategory as string,",
+				"          trainNumber as short,",
+				"          trainType as string,",
+				"          version as long",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     documentForm: 'documentPerLine') ~> source1",
+				"source(output(",
+				"          cancelled as boolean,",
+				"          commuterLineID as string,",
+				"          departureDate as date,",
+				"          operatorShortCode as string,",
+				"          operatorUICCode as short,",
+				"          runningCurrently as boolean,",
+				"          timeTableRows as (actualTime as string, cancelled as boolean, causes as string[], commercialStop as boolean, commercialTrack as short, countryCode as string, differenceInMinutes as short, estimateSource as string, liveEstimateTime as string, scheduledTime as string, stationShortCode as string, stationUICCode as short, trainReady as (accepted as boolean, source as string, timestamp as string), trainStopping as boolean, type as string)[],",
+				"          timetableAcceptanceDate as string,",
+				"          timetableType as string,",
+				"          trainCategory as string,",
+				"          trainNumber as boolean,",
+				"          trainType as string,",
+				"          version as long",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     documentForm: 'documentPerLine') ~> source2",
+				"source1 select(mapColumn(",
+				"          cancelled,",
+				"          commuterLineID,",
+				"          departureDate,",
+				"          operatorShortCode,",
+				"          operatorUICCode,",
+				"          runningCurrently,",
+				"          timetableAcceptanceDate,",
+				"          timetableType,",
+				"          trainCategory,",
+				"          trainType,",
+				"          version",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"source2 select(mapColumn(",
+				"          departureDate,",
+				"          operatorUICCode,",
+				"          operatorShortCode,",
+				"          trainType,",
+				"          trainCategory,",
+				"          commuterLineID,",
+				"          runningCurrently,",
+				"          cancelled,",
+				"          version,",
+				"          timetableType,",
+				"          timetableAcceptanceDate",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select2",
+				"select1, select2 union(byName: true)~> union1",
+				"union1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          cancelled as boolean,",
+				"          commuterLineID as string,",
+				"          departureDate as date,",
+				"          operatorShortCode as string,",
+				"          operatorUICCode as integer,",
+				"          runningCurrently as boolean,",
+				"          timetableAcceptanceDate as string,",
+				"          timetableType as string,",
+				"          trainCategory as string,",
+				"          trainNumber as integer,",
+				"          trainType as string,",
+				"          version as long",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     recreate:true,",
+				"     format: 'table',",
+				"     staged: true,",
+				"     allowCopyCommand: true,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
+			]
+		}
+	}
+}

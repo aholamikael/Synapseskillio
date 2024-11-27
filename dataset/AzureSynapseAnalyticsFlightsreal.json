@@ -1,0 +1,58 @@
+{
+	"name": "AzureSynapseAnalyticsFlightsreal",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSynapseAnalytics1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "flight_id",
+				"type": "nvarchar"
+			},
+			{
+				"name": "flight_no",
+				"type": "nvarchar"
+			},
+			{
+				"name": "scheduled_departure",
+				"type": "nvarchar"
+			},
+			{
+				"name": "scheduled_arrival",
+				"type": "nvarchar"
+			},
+			{
+				"name": "departure_airport",
+				"type": "nvarchar"
+			},
+			{
+				"name": "arrival_airport",
+				"type": "nvarchar"
+			},
+			{
+				"name": "status",
+				"type": "nvarchar"
+			},
+			{
+				"name": "aircraft_code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "actual_departure",
+				"type": "nvarchar"
+			},
+			{
+				"name": "actual_arrival",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "flights"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

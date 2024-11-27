@@ -1,0 +1,98 @@
+{
+	"name": "Pipelineekatest",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "SqlPoolSink",
+						"allowCopyCommand": true
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "country",
+									"type": "String"
+								},
+								"sink": {
+									"name": "country",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "beer_servings",
+									"type": "String"
+								},
+								"sink": {
+									"name": "beer_servings",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "spirit_servings",
+									"type": "String"
+								},
+								"sink": {
+									"name": "spirit_servings",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "wine_servings",
+									"type": "String"
+								},
+								"sink": {
+									"name": "wine_servings",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DestinationDataset_l89",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "SqlPoolTabletesti",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2024-11-25T12:17:40Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

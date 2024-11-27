@@ -1,0 +1,69 @@
+{
+	"name": "AzureSynapseAnalyticsTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSynapseAnalytics1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "cancelled",
+				"type": "bit"
+			},
+			{
+				"name": "commuterLineID",
+				"type": "varchar"
+			},
+			{
+				"name": "departureDate",
+				"type": "date"
+			},
+			{
+				"name": "operatorShortCode",
+				"type": "varchar"
+			},
+			{
+				"name": "operatorUICCode",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "runningCurrently",
+				"type": "bit"
+			},
+			{
+				"name": "timetableAcceptanceDate",
+				"type": "varchar"
+			},
+			{
+				"name": "timetableType",
+				"type": "varchar"
+			},
+			{
+				"name": "trainCategory",
+				"type": "varchar"
+			},
+			{
+				"name": "trainNumber",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "trainType",
+				"type": "varchar"
+			},
+			{
+				"name": "version",
+				"type": "bigint",
+				"precision": 19
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "flights"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,111 @@
+{
+	"name": "Dataflow4",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "AzureSynapseAnalyticsFlightsreal",
+						"type": "DatasetReference"
+					},
+					"name": "lennot"
+				},
+				{
+					"dataset": {
+						"referenceName": "AzureSynapseAnalyticsFlights",
+						"type": "DatasetReference"
+					},
+					"name": "penkit"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSynapseAnalyticsTable2",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "aggregate1"
+				},
+				{
+					"name": "join1"
+				},
+				{
+					"name": "select1"
+				},
+				{
+					"name": "filter1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          flight_id as string,",
+				"          flight_no as string,",
+				"          scheduled_departure as string,",
+				"          scheduled_arrival as string,",
+				"          departure_airport as string,",
+				"          arrival_airport as string,",
+				"          status as string,",
+				"          aircraft_code as string,",
+				"          actual_departure as string,",
+				"          actual_arrival as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table',",
+				"     staged: true) ~> lennot",
+				"source(output(",
+				"          aircraft_code as string,",
+				"          seat_no as string,",
+				"          fare_conditions as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table',",
+				"     staged: true) ~> penkit",
+				"penkit aggregate(groupBy(aircraft_code),",
+				"     seats = count(seat_no)) ~> aggregate1",
+				"lennot, aggregate1 join(lennot@aircraft_code == aggregate1@aircraft_code,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1",
+				"join1 select(mapColumn(",
+				"          flight_id,",
+				"          flight_no,",
+				"          scheduled_departure,",
+				"          scheduled_arrival,",
+				"          departure_airport,",
+				"          arrival_airport,",
+				"          status,",
+				"          actual_departure,",
+				"          actual_arrival,",
+				"          aircraft_code = aggregate1@aircraft_code,",
+				"          seats",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 filter(!isNull(seats)) ~> filter1",
+				"filter1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     staged: true,",
+				"     allowCopyCommand: true,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
+			]
+		}
+	}
+}

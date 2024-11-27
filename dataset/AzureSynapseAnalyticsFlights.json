@@ -1,0 +1,17 @@
+{
+	"name": "AzureSynapseAnalyticsFlights",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSynapseAnalytics1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "seats"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

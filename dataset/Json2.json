@@ -1,0 +1,98 @@
+{
+	"name": "Json2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "trains.json",
+				"fileSystem": "trains"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"trainNumber": {
+					"type": "integer"
+				},
+				"departureDate": {
+					"type": "string"
+				},
+				"operatorUICCode": {
+					"type": "integer"
+				},
+				"operatorShortCode": {
+					"type": "string"
+				},
+				"trainType": {
+					"type": "string"
+				},
+				"trainCategory": {
+					"type": "string"
+				},
+				"commuterLineID": {
+					"type": "string"
+				},
+				"runningCurrently": {
+					"type": "boolean"
+				},
+				"cancelled": {
+					"type": "boolean"
+				},
+				"version": {
+					"type": "integer"
+				},
+				"timetableType": {
+					"type": "string"
+				},
+				"timetableAcceptanceDate": {
+					"type": "string"
+				},
+				"timeTableRows": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"stationShortCode": {
+								"type": "string"
+							},
+							"stationUICCode": {
+								"type": "integer"
+							},
+							"countryCode": {
+								"type": "string"
+							},
+							"type": {
+								"type": "string"
+							},
+							"trainStopping": {
+								"type": "boolean"
+							},
+							"commercialStop": {
+								"type": "boolean"
+							},
+							"commercialTrack": {
+								"type": "string"
+							},
+							"cancelled": {
+								"type": "boolean"
+							},
+							"scheduledTime": {
+								"type": "string"
+							},
+							"causes": {
+								"type": "array"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}
