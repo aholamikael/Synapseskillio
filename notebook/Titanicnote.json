@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "3883525f-8615-4859-8ec0-07d267489c67"
+				"spark.autotune.trackingId": "bb757ab7-f584-4cbe-8cbf-b0cd5774212d"
 			}
 		},
 		"metadata": {
@@ -70,7 +70,7 @@
 					"df = pd.read_csv('abfss://exercisewednesday/Titanic.csv')\r\n",
 					"print(df)"
 				],
-				"execution_count": 14
+				"execution_count": 18
 			},
 			{
 				"cell_type": "markdown",
@@ -112,7 +112,7 @@
 					"print(df)\r\n",
 					""
 				],
-				"execution_count": 11
+				"execution_count": 19
 			},
 			{
 				"cell_type": "markdown",
@@ -147,10 +147,9 @@
 					"df['highFare'] = 0 \r\n",
 					"df.loc[df['Fare'] >= average_fare, 'highFare'] = 1  \r\n",
 					"\r\n",
-					"\r\n",
 					"print(df)"
 				],
-				"execution_count": 13
+				"execution_count": 20
 			},
 			{
 				"cell_type": "code",
@@ -166,9 +165,13 @@
 					}
 				},
 				"source": [
-					""
+					"output_path = 'abfss://exercisewednesday/notetitanic.csv'\r\n",
+					"\r\n",
+					"df.to_csv(output_path, index=False)\r\n",
+					"\r\n",
+					"print(df)"
 				],
-				"execution_count": null
+				"execution_count": 21
 			}
 		]
 	}
