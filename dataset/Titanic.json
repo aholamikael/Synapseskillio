@@ -1,0 +1,21 @@
+{
+	"name": "Titanic",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "HttpServerTitanic",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
