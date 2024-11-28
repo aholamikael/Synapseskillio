@@ -6,11 +6,7 @@
 		"type": "AzureBlobFS",
 		"typeProperties": {
 			"url": "https://mikaelskillio.dfs.core.windows.net/",
-			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIlNZTkFQU0VAMTY0RDVGRjYtRjk0OC00NERDLThBM0QtMzYwNTdBNEE4RkZBX2M5YzZlNjUwLTkwNzMtNGY0NS05OGMwLTE5M2UyYzRlY2E1ZiINCn0="
-		},
-		"connectVia": {
-			"referenceName": "AutoResolveIntegrationRuntime",
-			"type": "IntegrationRuntimeReference"
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIlNZTkFQU0VAMTY0RDVGRjYtRjk0OC00NERDLThBM0QtMzYwNTdBNEE4RkZBXzdlODEyZmFmLWMzNzYtNDliNS1iMWE5LTExNzI4ZTQ5Y2VhNCINCn0="
 		}
 	}
 }
