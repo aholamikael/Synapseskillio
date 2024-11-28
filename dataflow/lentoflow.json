@@ -1,0 +1,47 @@
+{
+	"name": "lentoflow",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"name": "Aircrafts"
+				},
+				{
+					"dataset": {
+						"referenceName": "airports",
+						"type": "DatasetReference"
+					},
+					"name": "Airports"
+				},
+				{
+					"dataset": {
+						"referenceName": "Bookings",
+						"type": "DatasetReference"
+					},
+					"name": "Bookings"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "lookup1"
+				}
+			],
+			"scriptLines": [
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false) ~> Aircrafts",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> Airports",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> Bookings",
+				"Bookings, Aircrafts lookup(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"     multiple: false,",
+				"     pickup: 'any',",
+				"     broadcast: 'auto')~> lookup1"
+			]
+		}
+	}
+}

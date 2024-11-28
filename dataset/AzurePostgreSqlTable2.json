@@ -1,0 +1,35 @@
+{
+	"name": "AzurePostgreSqlTable2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzurePostgreSql1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzurePostgreSqlTable",
+		"schema": [
+			{
+				"name": "aircraft_code",
+				"type": "character",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "model",
+				"type": "text",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "range",
+				"type": "integer",
+				"precision": 0,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "bookings",
+			"table": "aircrafts_data"
+		}
+	}
+}

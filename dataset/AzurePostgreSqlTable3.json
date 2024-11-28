@@ -1,0 +1,47 @@
+{
+	"name": "AzurePostgreSqlTable3",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzurePostgreSql1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzurePostgreSqlTable",
+		"schema": [
+			{
+				"name": "airport_code",
+				"type": "character",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "airport_name",
+				"type": "text",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "city",
+				"type": "text",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "coordinates",
+				"type": "point",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "timezone",
+				"type": "text",
+				"precision": 0,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "bookings",
+			"table": "airports_data"
+		}
+	}
+}

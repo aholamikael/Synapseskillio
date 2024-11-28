@@ -1,0 +1,41 @@
+{
+	"name": "AzurePostgreSqlTable4",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzurePostgreSql1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzurePostgreSqlTable",
+		"schema": [
+			{
+				"name": "ticket_no",
+				"type": "character",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "flight_id",
+				"type": "integer",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "boarding_no",
+				"type": "integer",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "seat_no",
+				"type": "character varying",
+				"precision": 0,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "bookings",
+			"table": "flights_v"
+		}
+	}
+}
