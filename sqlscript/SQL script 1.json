@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 1",
+	"properties": {
+		"content": {
+			"query": "SELECT TOP (100) [Survived]\n,[Pclass]\n,[Name]\n,[Sex]\n,[Age]\n,[SiblingsSpousesAboard]\n,[ParentsChildrenAboard]\n,[Fare]\n,[highFare]\n FROM [dbo].[titanic]",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "mikaelsqlpool",
+				"poolName": "mikaelsqlpool"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
