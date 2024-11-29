@@ -1,0 +1,105 @@
+{
+	"name": "Week6",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "flightzzz",
+						"type": "DatasetReference"
+					},
+					"name": "Lennot"
+				},
+				{
+					"dataset": {
+						"referenceName": "Ticketzz",
+						"type": "DatasetReference"
+					},
+					"name": "Tiketit"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSynapseAnalyticsTable2",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "join1"
+				},
+				{
+					"name": "filter1"
+				},
+				{
+					"name": "select1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          flight_id as integer,",
+				"          flight_no as string,",
+				"          scheduled_departure as string,",
+				"          scheduled_arrival as string,",
+				"          departure_airport as string,",
+				"          arrival_airport as string,",
+				"          status as string,",
+				"          aircraft_code as string,",
+				"          actual_departure as string,",
+				"          actual_arrival as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> Lennot",
+				"source(output(",
+				"          ticket_no as long,",
+				"          flight_id as integer,",
+				"          fare_conditions as string,",
+				"          amount as double",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> Tiketit",
+				"Lennot, Tiketit join(Lennot@flight_id == Tiketit@flight_id,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1",
+				"join1 filter(!isNull(amount)) ~> filter1",
+				"filter1 select(mapColumn(",
+				"          flight_id = Lennot@flight_id,",
+				"          flight_no,",
+				"          scheduled_departure,",
+				"          scheduled_arrival,",
+				"          departure_airport,",
+				"          arrival_airport,",
+				"          status,",
+				"          aircraft_code,",
+				"          actual_departure,",
+				"          actual_arrival,",
+				"          ticket_no,",
+				"          fare_conditions,",
+				"          amount",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     staged: true,",
+				"     allowCopyCommand: true,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
+			]
+		}
+	}
+}

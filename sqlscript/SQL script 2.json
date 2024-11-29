@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 2",
+	"properties": {
+		"content": {
+			"query": "SELECT TOP (100) [flight_id]\n,[flight_no]\n,[scheduled_departure]\n,[scheduled_arrival]\n,[departure_airport]\n,[arrival_airport]\n,[status]\n,[aircraft_code]\n,[actual_departure]\n,[actual_arrival]\n,[ticket_no]\n,[fare_conditions]\n,[amount]\n FROM [dbo].[finaltentti]",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "mikaelsqlpool",
+				"poolName": "mikaelsqlpool"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
