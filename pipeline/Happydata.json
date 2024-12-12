@@ -74,6 +74,13 @@
 						"referenceName": "HappyfloW",
 						"type": "DataFlowReference"
 					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "ADLSGen2",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "drinks"
+					},
 					"compute": {
 						"coreCount": 8,
 						"computeType": "General"
