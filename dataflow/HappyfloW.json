@@ -12,10 +12,21 @@
 					"name": "Happyyy"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Happytable",
+						"type": "DatasetReference"
+					},
+					"name": "Happysinken"
+				}
+			],
 			"transformations": [
 				{
-					"name": "flatten1"
+					"name": "rollink"
+				},
+				{
+					"name": "derivedColumn1"
 				}
 			],
 			"scriptLines": [
@@ -69,7 +80,22 @@
 				"          value",
 				"     ),",
 				"     skipDuplicateMapInputs: false,",
-				"     skipDuplicateMapOutputs: false) ~> flatten1"
+				"     skipDuplicateMapOutputs: false) ~> rollink",
+				"rollink derive(NPS = iif(value >= 9 && value <= 10, 1, iif(value >= 7 && value <= 8, 0, -1))\r",
+				"\r",
+				") ~> derivedColumn1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     staged: true,",
+				"     allowCopyCommand: true,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> Happysinken"
 			]
 		}
 	}
