@@ -24,6 +24,9 @@
 			"transformations": [
 				{
 					"name": "derivedColumn1"
+				},
+				{
+					"name": "select1"
 				}
 			],
 			"scriptLines": [
@@ -53,9 +56,31 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     documentForm: 'documentPerLine') ~> Happyyy",
-				"Happyyy derive(NPS = iif(value >= 9 && value <= 10, 1, iif(value >= 7 && value <= 8, 0, -1))\r",
+				"select1 derive(NPS = iif(value >= 9 && value <= 10, 1, iif(value >= 7 && value <= 8, 0, -1))\r",
 				"\r",
 				") ~> derivedColumn1",
+				"Happyyy select(mapColumn(",
+				"          commentLength,",
+				"          createdAt,",
+				"          enterpriseClass,",
+				"          key,",
+				"          language,",
+				"          lostTime,",
+				"          mood,",
+				"          openedAt,",
+				"          profile,",
+				"          questionnaireSlug,",
+				"          questionnaireTitle,",
+				"          rawCountry,",
+				"          reassign,",
+				"          resolvedAt,",
+				"          sentDate,",
+				"          severity,",
+				"          ticketType,",
+				"          value",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
 				"derivedColumn1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     deletable:false,",
