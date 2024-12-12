@@ -36,7 +36,7 @@
 				"          enterpriseClass as string,",
 				"          factorSlugs as string[],",
 				"          factors as string[],",
-				"          key as short,",
+				"          key as integer,",
 				"          language as string,",
 				"          lostTime as short,",
 				"          mood as string,",
