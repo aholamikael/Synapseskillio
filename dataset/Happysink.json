@@ -11,7 +11,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "happy.json",
-				"fileSystem": "Happy"
+				"fileSystem": "happ"
 			}
 		},
 		"schema": {}
