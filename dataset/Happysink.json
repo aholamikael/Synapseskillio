@@ -1,0 +1,19 @@
+{
+	"name": "Happysink",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ADLSGen2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "happy.json",
+				"fileSystem": "Happy"
+			}
+		},
+		"schema": {}
+	}
+}

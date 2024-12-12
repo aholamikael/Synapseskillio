@@ -1,0 +1,86 @@
+{
+	"name": "Happysource",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "dataHappy",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "happy/part-00000-tid-2694571529953814670-b7069439-82b3-4e82-ab35-614ee298ee20-56-1-c000.json",
+				"container": "data"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"key": {
+					"type": "integer"
+				},
+				"createdAt": {
+					"type": "string"
+				},
+				"enterpriseClass": {
+					"type": "string"
+				},
+				"factorSlugs": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"factors": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"language": {
+					"type": "string"
+				},
+				"lostTime": {
+					"type": "integer"
+				},
+				"mood": {
+					"type": "string"
+				},
+				"questionnaireSlug": {
+					"type": "string"
+				},
+				"questionnaireTitle": {
+					"type": "string"
+				},
+				"rawCountry": {
+					"type": "string"
+				},
+				"reassign": {
+					"type": "string"
+				},
+				"severity": {
+					"type": "string"
+				},
+				"ticketType": {
+					"type": "string"
+				},
+				"value": {
+					"type": "integer"
+				},
+				"resolvedAt": {
+					"type": "string"
+				},
+				"sentDate": {
+					"type": "string"
+				},
+				"profile": {
+					"type": "string"
+				},
+				"commentLength": {
+					"type": "integer"
+				}
+			}
+		}
+	}
+}
