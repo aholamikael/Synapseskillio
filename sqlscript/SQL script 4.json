@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 4",
+	"properties": {
+		"content": {
+			"query": "SELECT TOP (100) [commentLength]\n,[createdAt]\n,[enterpriseClass]\n,[factorSlugs]\n,[factors]\n,[key]\n,[language]\n,[lostTime]\n,[mood]\n,[openedAt]\n,[profile]\n,[questionnaireSlug]\n,[questionnaireTitle]\n,[rawCountry]\n,[reassign]\n,[resolvedAt]\n,[sentDate]\n,[severity]\n,[ticketType]\n,[value]\n,[NPS]\n FROM [dbo].[happy]",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "mikaelsqlpool",
+				"poolName": "mikaelsqlpool"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
