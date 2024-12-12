@@ -1,0 +1,76 @@
+{
+	"name": "HappyfloW",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Happysink",
+						"type": "DatasetReference"
+					},
+					"name": "Happyyy"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "flatten1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          commentLength as short,",
+				"          createdAt as string,",
+				"          enterpriseClass as string,",
+				"          factorSlugs as string[],",
+				"          factors as string[],",
+				"          key as short,",
+				"          language as string,",
+				"          lostTime as short,",
+				"          mood as string,",
+				"          openedAt as string,",
+				"          profile as string,",
+				"          questionnaireSlug as string,",
+				"          questionnaireTitle as string,",
+				"          rawCountry as string,",
+				"          reassign as short,",
+				"          resolvedAt as string,",
+				"          sentDate as string,",
+				"          severity as string,",
+				"          ticketType as string,",
+				"          value as short",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     documentForm: 'documentPerLine') ~> Happyyy",
+				"Happyyy foldDown(unrollMultiple(factorSlugs,factors),",
+				"     mapColumn(",
+				"          commentLength,",
+				"          createdAt,",
+				"          enterpriseClass,",
+				"          factorSlugs,",
+				"          factors,",
+				"          key,",
+				"          language,",
+				"          lostTime,",
+				"          mood,",
+				"          openedAt,",
+				"          profile,",
+				"          questionnaireSlug,",
+				"          questionnaireTitle,",
+				"          rawCountry,",
+				"          reassign,",
+				"          resolvedAt,",
+				"          sentDate,",
+				"          severity,",
+				"          ticketType,",
+				"          value",
+				"     ),",
+				"     skipDuplicateMapInputs: false,",
+				"     skipDuplicateMapOutputs: false) ~> flatten1"
+			]
+		}
+	}
+}
