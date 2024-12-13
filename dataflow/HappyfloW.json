@@ -27,6 +27,9 @@
 				},
 				{
 					"name": "select1"
+				},
+				{
+					"name": "assert1"
 				}
 			],
 			"scriptLines": [
@@ -56,15 +59,10 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     documentForm: 'documentPerLine') ~> Happyyy",
-				"Happyyy derive(NPS = iif(value >= 9 && value <= 10, 1, iif(value >= 7 && value <= 8, 0, -1))\r",
-				"\r",
-				",",
-				"          Created = toDate(substring(createdAt, 0, 10), 'yyyy-MM-dd')\r",
-				",",
-				"          Opened = toDate(substring(openedAt, 0, 10), 'yyyy-MM-dd')\r",
-				",",
-				"          Resolved = toDate(substring(resolvedAt, 0, 10), 'yyyy-MM-dd')\r",
-				") ~> derivedColumn1",
+				"Happyyy derive(NPS = iif(value >= 9 && value <= 10, 1, iif(value >= 7 && value <= 8, 0, -1)),",
+				"          Created = toDate(substring(createdAt, 0, 10), 'yyyy-MM-dd'),",
+				"          Opened = toDate(substring(openedAt, 0, 10), 'yyyy-MM-dd'),",
+				"          Resolved = toDate(substring(resolvedAt, 0, 10), 'yyyy-MM-dd')) ~> derivedColumn1",
 				"derivedColumn1 select(mapColumn(",
 				"          commentLength,",
 				"          enterpriseClass,",
@@ -88,7 +86,9 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select1",
-				"select1 sink(allowSchemaDrift: true,",
+				"select1 assert(expectTrue(!isNull(value)\r",
+				", false, 'assert1')) ~> assert1",
+				"assert1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     deletable:false,",
 				"     insertable:true,",
